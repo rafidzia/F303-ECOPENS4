@@ -143,6 +143,7 @@ uint16_t input_pwm_min = 1000;
 uint16_t input_pwm_max = 2000;
 
 uint32_t inputDutyCycle = 0;
+uint32_t pastInputDutyCycle = 0;
 float inputFrequency = 0;
 uint16_t oc5ValueOld = 0;
 
@@ -159,7 +160,8 @@ uint16_t adc2DMA[10] = { 0 };
 float errorPWM = 0.0;
 float integralErrorPWM = 0.0;
 
-float IntegralOffset = 3800;
+uint32_t IntegralOffset = 3800;
+uint32_t errorVal = 5;
 
 bool a = false;
 bool x = false;
@@ -1248,7 +1250,7 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
 
 	//Motor Kecil 930KV
 	//float IntegralOffset = 0.0750;
-	float selisih = 0;
+//	float selisih = 0;
 
 	if (htim->Instance == TIM1 && htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1) {
 		switch (phase_bemf) {
@@ -1267,11 +1269,12 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
 //			total = 0;
 //			commutationPattern(NEXT);
 //		}
-		if ((float) total >= IntegralOffset) {
+		if (total >= IntegralOffset) {
 			if(y){
-				if(total - IntegralOffset > 5){
+				if(total - IntegralOffset > errorVal){
 					total--;
 				}else{
+//					total = 0;
 					total = total - IntegralOffset;
 				}
 			}else{
@@ -1329,24 +1332,24 @@ void StartComparatorTask(void *argument)
 		osThreadFlagsWait(0x1, osFlagsWaitAny, osWaitForever);
 
 		if (compTrig == COMP1_CALLBACK && waitForCommutation == 0) {
-			if(!d){
-				d = true;
+//			if(!d){
+//				d = true;
 				__HAL_TIM_ENABLE_IT(&htim1, TIM_IT_CC1);
-			}
+//			}
 
 			waitForCommutation = 1;
 		} else if (compTrig == COMP2_CALLBACK && waitForCommutation == 0) {
-			if(!d){
-				d = true;
+//			if(!d){
+//				d = true;
 				__HAL_TIM_ENABLE_IT(&htim1, TIM_IT_CC1);
-			}
+//			}
 
 			waitForCommutation = 1;
 		} else if (compTrig == COMP3_CALLBACK && waitForCommutation == 0) {
-			if(!d){
-				d = true;
+//			if(!d){
+//				d = true;
 				__HAL_TIM_ENABLE_IT(&htim1, TIM_IT_CC1);
-			}
+//			}
 
 			waitForCommutation = 1;
 		}
@@ -1417,11 +1420,27 @@ void StartAnalogInTask(void *argument)
 			break;
 		case MODE_MOTOR_RUN:
 
-			if(inputDutyCycle > 1500){
-				y = true;
+			if(inputDutyCycle > 1400){
+//				if(!x){
+					y = true;
+//					x = true;
+//				}
 			}else{
+//				x = false;
 				y = false;
 			}
+
+			if(pastInputDutyCycle > inputDutyCycle){
+				errorVal = 7;
+				IntegralOffset = 3800;
+			}else if(pastInputDutyCycle < inputDutyCycle){
+				errorVal = 5;
+				IntegralOffset = 2400;
+			}else{
+				errorVal = 5;
+				IntegralOffset = 3800;
+			}
+			pastInputDutyCycle = inputDutyCycle;
 
 			if(!y){
 				newPWM = map(inputDutyCycle, input_pwm_min, input_pwm_max, PWM_MIN, PWM_MAX);
@@ -1430,6 +1449,18 @@ void StartAnalogInTask(void *argument)
 				TIM1->CCR1 = setPWM;
 				TIM1->CCR5 = TIM1->CCR1 + compWindowOffset;
 			}
+
+//			if(newPWM < setPWM){
+//				IntegralOffset = 3950;
+//				y = false;
+//			}else if(newPWM > setPWM){
+//				IntegralOffset = 2800;
+//				y = false;
+//			}else{
+//				IntegralOffset = 3800;
+//				y = true;
+//			}
+
 
 
 //			if ((float) analogIn < 4095.0 * 0.1) {
@@ -1456,8 +1487,8 @@ void StartAnalogInTask(void *argument)
 void StartControllerTask(void *argument)
 {
   /* USER CODE BEGIN StartControllerTask */
-	float kp = 0.08;
-	float ki = 0.001;
+	float kp = 0.07;
+	float ki = 0.005;
 	float outputPWM = 0.0;
 	float outputIntegralPWM = 0.0;
 	/* Infinite loop */
@@ -1465,7 +1496,7 @@ void StartControllerTask(void *argument)
 	for(;;)
 	  {
 		if(y){
-			osDelay(1);
+			osDelay(5);
 			continue;
 		}
 		if (mode_motor == MODE_MOTOR_RUN){
@@ -1482,7 +1513,7 @@ void StartControllerTask(void *argument)
 			TIM1->CCR1 = setPWM;
 			TIM1->CCR5 = TIM1->CCR1 + compWindowOffset;
 		}
-		osDelay(1);
+		osDelay(5);
 	  }
   /* USER CODE END StartControllerTask */
 }

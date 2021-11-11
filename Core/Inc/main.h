@@ -105,7 +105,7 @@ void Error_Handler(void);
 /* USER CODE BEGIN Private defines */
 #define map(x,in_min,in_max,out_min,out_max) ( (x-in_min) * (out_max-out_min) / (in_max-in_min) + out_min )
 #define constrain(nilaix,bawah,atas) ( (nilaix)<(bawah) ? (bawah) : ( (nilaix)>(atas) ? (atas) : (nilaix) ) )
-#define PWM_MAX 1440
+#define PWM_MAX 1800
 #define PWM_MIN 0
 #define FREQ_INPUT_PWM_MAX 51.0
 #define FREQ_INPUT_PWM_MIN 48.0
