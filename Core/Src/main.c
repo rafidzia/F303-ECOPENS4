@@ -1246,11 +1246,9 @@ void HAL_COMP_TriggerCallback(COMP_HandleTypeDef *hcomp) {
 
 void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
 	static uint32_t total;
-	//Motor Besar 415KV
 
 	//Motor Kecil 930KV
 	//float IntegralOffset = 0.0750;
-//	float selisih = 0;
 
 	if (htim->Instance == TIM1 && htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1) {
 		switch (phase_bemf) {
@@ -1264,17 +1262,11 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
 			total += adc2DMA[2];
 			break;
 		}
-//		if ((float) total * 0.000025f >= IntegralOffset) {
-//			__HAL_TIM_DISABLE_IT(&htim1, TIM_IT_CC1);
-//			total = 0;
-//			commutationPattern(NEXT);
-//		}
 		if (total >= IntegralOffset) {
 			if(y){
 				if(total - IntegralOffset > errorVal){
 					total--;
 				}else{
-//					total = 0;
 					total = total - IntegralOffset;
 				}
 			}else{
@@ -1332,24 +1324,15 @@ void StartComparatorTask(void *argument)
 		osThreadFlagsWait(0x1, osFlagsWaitAny, osWaitForever);
 
 		if (compTrig == COMP1_CALLBACK && waitForCommutation == 0) {
-//			if(!d){
-//				d = true;
 				__HAL_TIM_ENABLE_IT(&htim1, TIM_IT_CC1);
-//			}
 
 			waitForCommutation = 1;
 		} else if (compTrig == COMP2_CALLBACK && waitForCommutation == 0) {
-//			if(!d){
-//				d = true;
 				__HAL_TIM_ENABLE_IT(&htim1, TIM_IT_CC1);
-//			}
 
 			waitForCommutation = 1;
 		} else if (compTrig == COMP3_CALLBACK && waitForCommutation == 0) {
-//			if(!d){
-//				d = true;
 				__HAL_TIM_ENABLE_IT(&htim1, TIM_IT_CC1);
-//			}
 
 			waitForCommutation = 1;
 		}
@@ -1421,12 +1404,8 @@ void StartAnalogInTask(void *argument)
 		case MODE_MOTOR_RUN:
 
 			if(inputDutyCycle > 1400){
-//				if(!x){
-					y = true;
-//					x = true;
-//				}
+				y = true;
 			}else{
-//				x = false;
 				y = false;
 			}
 
@@ -1449,19 +1428,6 @@ void StartAnalogInTask(void *argument)
 				TIM1->CCR1 = setPWM;
 				TIM1->CCR5 = TIM1->CCR1 + compWindowOffset;
 			}
-
-//			if(newPWM < setPWM){
-//				IntegralOffset = 3950;
-//				y = false;
-//			}else if(newPWM > setPWM){
-//				IntegralOffset = 2800;
-//				y = false;
-//			}else{
-//				IntegralOffset = 3800;
-//				y = true;
-//			}
-
-
 
 //			if ((float) analogIn < 4095.0 * 0.1) {
 			if ((float) inputDutyCycle < 1150) {
