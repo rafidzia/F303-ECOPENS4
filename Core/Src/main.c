@@ -396,18 +396,6 @@ void startMotor() {
 	mode_motor = MODE_MOTOR_RUN;
 }
 
-void reset() {
-	HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, 0);
-
-	HAL_GPIO_WritePin(GPIOB,
-			INH_A_Pin | INH_B_Pin | INH_C_Pin | IN_A_Pin | IN_B_Pin | IN_C_Pin
-					| OUT_A_Pin | OUT_B_Pin | OUT_C_Pin, GPIO_PIN_RESET);
-	HAL_COMP_Stop_IT(&hcomp1);
-	HAL_COMP_Stop_IT(&hcomp2);
-	HAL_COMP_Stop_IT(&hcomp3);
-	phase_bemf = PHASE_B;
-	bemf_dir = BEMF_FALLING;
-}
 /* USER CODE END 0 */
 
 /**
