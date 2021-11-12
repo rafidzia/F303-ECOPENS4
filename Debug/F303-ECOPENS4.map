@@ -7794,37 +7794,37 @@ LOAD c:/st/stm32cubeide_1.7.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
  .debug_macro   0x000000000002270b      0x196 ./Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.o
  .debug_macro   0x00000000000228a1      0x1ae ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
 
-.debug_line     0x0000000000000000    0x1ffbc
+.debug_line     0x0000000000000000    0x1ffb7
  .debug_line    0x0000000000000000      0x7cd ./Core/Src/dwt_delay.o
- .debug_line    0x00000000000007cd     0x16ac ./Core/Src/main.o
- .debug_line    0x0000000000001e79      0xbf6 ./Core/Src/retarget.o
- .debug_line    0x0000000000002a6f      0xaba ./Core/Src/stm32f3xx_hal_msp.o
- .debug_line    0x0000000000003529      0x7e6 ./Core/Src/stm32f3xx_hal_timebase_tim.o
- .debug_line    0x0000000000003d0f      0x900 ./Core/Src/stm32f3xx_it.o
- .debug_line    0x000000000000460f      0x4f8 ./Core/Src/sysmem.o
- .debug_line    0x0000000000004b07      0x7fd ./Core/Src/system_stm32f3xx.o
- .debug_line    0x0000000000005304       0x88 ./Core/Startup/startup_stm32f303cctx.o
- .debug_line    0x000000000000538c      0xa32 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.o
- .debug_line    0x0000000000005dbe      0x976 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc.o
- .debug_line    0x0000000000006734     0x27ae ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.o
- .debug_line    0x0000000000008ee2      0xd62 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_comp.o
- .debug_line    0x0000000000009c44      0xcf7 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.o
- .debug_line    0x000000000000a93b      0x97e ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac.o
- .debug_line    0x000000000000b2b9      0xbf6 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac_ex.o
- .debug_line    0x000000000000beaf      0xd44 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.o
- .debug_line    0x000000000000cbf3      0xb93 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.o
- .debug_line    0x000000000000d786     0x140d ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.o
- .debug_line    0x000000000000eb93      0xd9c ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.o
- .debug_line    0x000000000000f92f     0x3d71 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.o
- .debug_line    0x00000000000136a0     0x1b13 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.o
- .debug_line    0x00000000000151b3     0x319b ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.o
- .debug_line    0x000000000001834e     0x2459 ./Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.o
- .debug_line    0x000000000001a7a7      0x70b ./Middlewares/Third_Party/FreeRTOS/Source/list.o
- .debug_line    0x000000000001aeb2     0x16ce ./Middlewares/Third_Party/FreeRTOS/Source/queue.o
- .debug_line    0x000000000001c580     0x1d25 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
- .debug_line    0x000000000001e2a5      0xc9b ./Middlewares/Third_Party/FreeRTOS/Source/timers.o
- .debug_line    0x000000000001ef40      0x7af ./Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.o
- .debug_line    0x000000000001f6ef      0x8cd ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
+ .debug_line    0x00000000000007cd     0x16a7 ./Core/Src/main.o
+ .debug_line    0x0000000000001e74      0xbf6 ./Core/Src/retarget.o
+ .debug_line    0x0000000000002a6a      0xaba ./Core/Src/stm32f3xx_hal_msp.o
+ .debug_line    0x0000000000003524      0x7e6 ./Core/Src/stm32f3xx_hal_timebase_tim.o
+ .debug_line    0x0000000000003d0a      0x900 ./Core/Src/stm32f3xx_it.o
+ .debug_line    0x000000000000460a      0x4f8 ./Core/Src/sysmem.o
+ .debug_line    0x0000000000004b02      0x7fd ./Core/Src/system_stm32f3xx.o
+ .debug_line    0x00000000000052ff       0x88 ./Core/Startup/startup_stm32f303cctx.o
+ .debug_line    0x0000000000005387      0xa32 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.o
+ .debug_line    0x0000000000005db9      0x976 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc.o
+ .debug_line    0x000000000000672f     0x27ae ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.o
+ .debug_line    0x0000000000008edd      0xd62 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_comp.o
+ .debug_line    0x0000000000009c3f      0xcf7 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.o
+ .debug_line    0x000000000000a936      0x97e ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac.o
+ .debug_line    0x000000000000b2b4      0xbf6 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac_ex.o
+ .debug_line    0x000000000000beaa      0xd44 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.o
+ .debug_line    0x000000000000cbee      0xb93 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.o
+ .debug_line    0x000000000000d781     0x140d ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.o
+ .debug_line    0x000000000000eb8e      0xd9c ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.o
+ .debug_line    0x000000000000f92a     0x3d71 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.o
+ .debug_line    0x000000000001369b     0x1b13 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.o
+ .debug_line    0x00000000000151ae     0x319b ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.o
+ .debug_line    0x0000000000018349     0x2459 ./Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.o
+ .debug_line    0x000000000001a7a2      0x70b ./Middlewares/Third_Party/FreeRTOS/Source/list.o
+ .debug_line    0x000000000001aead     0x16ce ./Middlewares/Third_Party/FreeRTOS/Source/queue.o
+ .debug_line    0x000000000001c57b     0x1d25 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+ .debug_line    0x000000000001e2a0      0xc9b ./Middlewares/Third_Party/FreeRTOS/Source/timers.o
+ .debug_line    0x000000000001ef3b      0x7af ./Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.o
+ .debug_line    0x000000000001f6ea      0x8cd ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
 
 .debug_str      0x0000000000000000    0xd3ed7
  .debug_str     0x0000000000000000    0xbedf9 ./Core/Src/dwt_delay.o

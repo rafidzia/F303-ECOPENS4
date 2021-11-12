@@ -39,17 +39,17 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_macro  00022a4f  00000000  00000000  0004c670  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   0001ffbc  00000000  00000000  0006f0bf  2**0
+ 18 .debug_line   0001ffb7  00000000  00000000  0006f0bf  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000d3ed7  00000000  00000000  0008f07b  2**0
+ 19 .debug_str    000d3ed7  00000000  00000000  0008f076  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000053  00000000  00000000  00162f52  2**0
+ 20 .comment      00000053  00000000  00000000  00162f4d  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  00007df8  00000000  00000000  00162fa8  2**2
+ 21 .debug_frame  00007df8  00000000  00000000  00162fa0  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .stab         0000003c  00000000  00000000  0016ada0  2**2
+ 22 .stab         0000003c  00000000  00000000  0016ad98  2**2
                   CONTENTS, READONLY, DEBUGGING
- 23 .stabstr      00000076  00000000  00000000  0016addc  2**0
+ 23 .stabstr      00000076  00000000  00000000  0016add4  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -3832,10 +3832,10 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
  8001d0e:	b082      	sub	sp, #8
  8001d10:	af00      	add	r7, sp, #0
  8001d12:	6078      	str	r0, [r7, #4]
+	static uint32_t total;
 
 	//Motor Kecil 930KV
 	//float IntegralOffset = 0.0750;
-//	float selisih = 0;
 
 	if (htim->Instance == TIM1 && htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1) {
  8001d14:	687b      	ldr	r3, [r7, #4]
@@ -3895,11 +3895,7 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
  8001d6e:	6013      	str	r3, [r2, #0]
 			break;
  8001d70:	bf00      	nop
-//		if ((float) total * 0.000025f >= IntegralOffset) {
-//			__HAL_TIM_DISABLE_IT(&htim1, TIM_IT_CC1);
-//			total = 0;
-//			commutationPattern(NEXT);
-//		}
+		}
 		if (total >= IntegralOffset) {
  8001d72:	4b18      	ldr	r3, [pc, #96]	; (8001dd4 <HAL_TIM_PWM_PulseFinishedCallback+0xc8>)
  8001d74:	681a      	ldr	r2, [r3, #0]
@@ -3930,7 +3926,6 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
  8001da0:	6013      	str	r3, [r2, #0]
  8001da2:	e00a      	b.n	8001dba <HAL_TIM_PWM_PulseFinishedCallback+0xae>
 				}else{
-//					total = 0;
 					total = total - IntegralOffset;
  8001da4:	4b0b      	ldr	r3, [pc, #44]	; (8001dd4 <HAL_TIM_PWM_PulseFinishedCallback+0xc8>)
  8001da6:	681a      	ldr	r2, [r3, #0]
@@ -4138,8 +4133,6 @@ void StartComparatorTask(void *argument)
  8001f08:	b2db      	uxtb	r3, r3
  8001f0a:	2b00      	cmp	r3, #0
  8001f0c:	d10b      	bne.n	8001f26 <StartComparatorTask+0x42>
-//			if(!d){
-//				d = true;
 				__HAL_TIM_ENABLE_IT(&htim1, TIM_IT_CC1);
  8001f0e:	4b58      	ldr	r3, [pc, #352]	; (8002070 <StartComparatorTask+0x18c>)
  8001f10:	681b      	ldr	r3, [r3, #0]
@@ -4148,7 +4141,6 @@ void StartComparatorTask(void *argument)
  8001f16:	681b      	ldr	r3, [r3, #0]
  8001f18:	f042 0202 	orr.w	r2, r2, #2
  8001f1c:	60da      	str	r2, [r3, #12]
-//			}
 
 			waitForCommutation = 1;
  8001f1e:	4b53      	ldr	r3, [pc, #332]	; (800206c <StartComparatorTask+0x188>)
@@ -4165,8 +4157,6 @@ void StartComparatorTask(void *argument)
  8001f32:	b2db      	uxtb	r3, r3
  8001f34:	2b00      	cmp	r3, #0
  8001f36:	d10b      	bne.n	8001f50 <StartComparatorTask+0x6c>
-//			if(!d){
-//				d = true;
 				__HAL_TIM_ENABLE_IT(&htim1, TIM_IT_CC1);
  8001f38:	4b4d      	ldr	r3, [pc, #308]	; (8002070 <StartComparatorTask+0x18c>)
  8001f3a:	681b      	ldr	r3, [r3, #0]
@@ -4175,7 +4165,6 @@ void StartComparatorTask(void *argument)
  8001f40:	681b      	ldr	r3, [r3, #0]
  8001f42:	f042 0202 	orr.w	r2, r2, #2
  8001f46:	60da      	str	r2, [r3, #12]
-//			}
 
 			waitForCommutation = 1;
  8001f48:	4b48      	ldr	r3, [pc, #288]	; (800206c <StartComparatorTask+0x188>)
@@ -4192,8 +4181,6 @@ void StartComparatorTask(void *argument)
  8001f5c:	b2db      	uxtb	r3, r3
  8001f5e:	2b00      	cmp	r3, #0
  8001f60:	d10a      	bne.n	8001f78 <StartComparatorTask+0x94>
-//			if(!d){
-//				d = true;
 				__HAL_TIM_ENABLE_IT(&htim1, TIM_IT_CC1);
  8001f62:	4b43      	ldr	r3, [pc, #268]	; (8002070 <StartComparatorTask+0x18c>)
  8001f64:	681b      	ldr	r3, [r3, #0]
@@ -4202,7 +4189,6 @@ void StartComparatorTask(void *argument)
  8001f6a:	681b      	ldr	r3, [r3, #0]
  8001f6c:	f042 0202 	orr.w	r2, r2, #2
  8001f70:	60da      	str	r2, [r3, #12]
-//			}
 
 			waitForCommutation = 1;
  8001f72:	4b3e      	ldr	r3, [pc, #248]	; (800206c <StartComparatorTask+0x188>)
@@ -4421,16 +4407,12 @@ void StartAnalogInTask(void *argument)
  80020f8:	681b      	ldr	r3, [r3, #0]
  80020fa:	f5b3 6faf 	cmp.w	r3, #1400	; 0x578
  80020fe:	d903      	bls.n	8002108 <StartAnalogInTask+0x74>
-//				if(!x){
-					y = true;
+				y = true;
  8002100:	4b45      	ldr	r3, [pc, #276]	; (8002218 <StartAnalogInTask+0x184>)
  8002102:	2201      	movs	r2, #1
  8002104:	701a      	strb	r2, [r3, #0]
  8002106:	e002      	b.n	800210e <StartAnalogInTask+0x7a>
-//					x = true;
-//				}
 			}else{
-//				x = false;
 				y = false;
  8002108:	4b43      	ldr	r3, [pc, #268]	; (8002218 <StartAnalogInTask+0x184>)
  800210a:	2200      	movs	r2, #0
@@ -4549,9 +4531,7 @@ void StartAnalogInTask(void *argument)
  80021d8:	4a17      	ldr	r2, [pc, #92]	; (8002238 <StartAnalogInTask+0x1a4>)
  80021da:	440b      	add	r3, r1
  80021dc:	6593      	str	r3, [r2, #88]	; 0x58
-//			}
-
-
+			}
 
 //			if ((float) analogIn < 4095.0 * 0.1) {
 			if ((float) inputDutyCycle < 1150) {
