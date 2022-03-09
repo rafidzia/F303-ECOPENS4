@@ -1,2 +1,8 @@
 # Auto detect text files and perform LF normalization
+Drivers/* linguist-detectable=false
+Middlewares/* linguist-detectable=false
+Debug/* linguist-detectable=false
+.settings/* linguist-detectable=false
+
 * text=auto
+
